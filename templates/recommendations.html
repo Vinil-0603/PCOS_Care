@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCOS Recommendations - PCOS Care Platform</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8e24aa;
+            --primary-light: #bc53d8;
+            --primary-dark: #5f0080;
+            --primary-bg: #f9f0fc;
+            --secondary: #2196f3;
+            --secondary-light: #64b5f6;
+            --secondary-dark: #0d47a1;
+            --accent: #ff5722;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius-sm: 4px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --header-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-100);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header Styles */
+        .header {
+            height: var(--header-height);
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.25rem 0;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .main-content {
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 3rem;
+            min-height: 100vh;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 30%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff5722' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .page-subtitle {
+            color: var(--gray-700);
+            max-width: 70%;
+            position: relative;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background-color: var(--primary-bg);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .form-title {
+            color: var(--primary-dark);
+            margin-bottom: 0;
+        }
+        
+        .form-body {
+            padding: 1.5rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.1);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: #e64a19;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Recommendations Section */
+        .recommendations-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: none;
+        }
+        
+        .recommendations-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .recommendations-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            background-color: var(--accent);
+        }
+        
+        .recommendations-title {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+        }
+        
+        .recommendations-body {
+            padding: 1.5rem;
+        }
+        
+        .recommendations-content {
+            margin-top: 1.5rem;
+        }
+        
+        .recommendations-content h3 {
+            color: var(--accent);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .recommendations-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .recommendations-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .recommendations-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+        
+        .alert-info {
+            background-color: rgba(33, 150, 243, 0.1);
+            border-left-color: var(--secondary);
+            color: var(--secondary-dark);
+        }
+        
+        .recommendations-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* Loading Indicator */
+        .loading-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            padding: 3rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 87, 34, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: white;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+        }
+        
+        .footer-copyright {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-subtitle {
+                max-width: 100%;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .recommendations-actions {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <div class="logo-icon">P</div>
+                    <div class="logo-text">PCOS Care</div>
+                </a>
+                <nav class="nav-links">
+                    <a href="/detection" class="nav-link">Detection</a>
+                    <a href="/recommendations" class="nav-link active">Recommendations</a>
+                    <a href="/mental-health" class="nav-link">Mental Health</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="container">
+            <section class="page-header">
+                <div class="page-header-pattern"></div>
+                <h1 class="page-title">Personalized PCOS Recommendations</h1>
+                <p class="page-subtitle">Get customized lifestyle, diet, exercise, and self-care recommendations based on your specific PCOS profile.</p>
+            </section>
+            
+            <section class="form-section" id="form-section">
+                <div class="form-header">
+                    <h2 class="form-title">Your Health Information</h2>
+                </div>
+                <div class="form-body">
+                    <form id="recommendations-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="age" class="form-label">Age (years)</label>
+                                <input type="number" id="age" name="Age" class="form-control" min="12" max="60" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bmi" class="form-label">BMI</label>
+                                <input type="number" id="bmi" name="BMI" class="form-control" min="15" max="50" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="blood-group" class="form-label">Blood Group</label>
+                                <select id="blood-group" name="Blood Group" class="form-control" required>
+                                    <option value="" selected disabled>Select blood group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="cycle" class="form-label">Menstrual Cycle</label>
+                                <select id="cycle" name="Cycle" class="form-control" required>
+                                    <option value="" selected disabled>Select</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Irregular">Irregular</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tsh" class="form-label">TSH Level (mIU/L)</label>
+                                <input type="number" id="tsh" name="TSH" class="form-control" min="0" max="20" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vitamin-d" class="form-label">Vitamin D3 (ng/mL)</label>
+                                <input type="number" id="vitamin-d" name="Vit D3" class="form-control" min="0" max="100" step="0.1">
+                            </div>
+                        </div>
+                        
+                        <h3>PCOS Symptoms</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Weight Gain</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="weight-gain-yes" name="Weight gain" value="Yes" required>
+                                        <label for="weight-gain-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="weight-gain-no" name="Weight gain" value="No">
+                                        <label for="weight-gain-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Hair Growth (Hirsutism)</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-growth-yes" name="hair growth" value="Yes" required>
+                                        <label for="hair-growth-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-growth-no" name="hair growth" value="No">
+                                        <label for="hair-growth-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Skin Darkening</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="skin-darkening-yes" name="Skin darkening" value="Yes" required>
+                                        <label for="skin-darkening-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="skin-darkening-no" name="Skin darkening" value="No">
+                                        <label for="skin-darkening-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Hair Loss</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-loss-yes" name="Hair loss" value="Yes" required>
+                                        <label for="hair-loss-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-loss-no" name="Hair loss" value="No">
+                                        <label for="hair-loss-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Pimples/Acne</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="pimples-yes" name="Pimples" value="Yes" required>
+                                        <label for="pimples-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="pimples-no" name="Pimples" value="No">
+                                        <label for="pimples-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Fast Food Consumption</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="fast-food-yes" name="Fast food" value="Yes" required>
+                                        <label for="fast-food-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="fast-food-no" name="Fast food" value="No">
+                                        <label for="fast-food-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Regular Exercise</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="exercise-yes" name="Reg.Exercise" value="Yes" required>
+                                        <label for="exercise-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="exercise-no" name="Reg.Exercise" value="No">
+                                        <label for="exercise-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-accent" id="get-recommendations-btn">Get Personalized Recommendations</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            
+            <section class="loading-section" id="loading-section">
+                <div class="spinner"></div>
+                <p class="loading-text">Generating your personalized recommendations...</p>
+            </section>
+            
+            <section class="recommendations-section" id="recommendations-section">
+                <div class="recommendations-header">
+                    <div class="recommendations-icon">🌱</div>
+                    <h2 class="recommendations-title">Your Personalized PCOS Recommendations</h2>
+                </div>
+                <div class="recommendations-body">
+                    <div class="alert alert-info">
+                        These recommendations are tailored to your specific PCOS profile based on the information you provided. Remember that managing PCOS is most effective with a comprehensive approach that includes dietary changes, regular exercise, and lifestyle modifications.
+                    </div>
+                    
+                    <div class="recommendations-content" id="recommendations-content">
+                        <!-- This will be populated with the recommendations from the API -->
+                    </div>
+                    
+                    <div class="recommendations-actions">
+                        <a href="/detection" class="btn btn-outline">Check PCOS Risk</a>
+                        <a href="/mental-health" class="btn btn-primary">Talk to Mental Health Support</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/" class="footer-link">Home</a>
+                    <a href="/detection" class="footer-link">Detection</a>
+                    <a href="/recommendations" class="footer-link">Recommendations</a>
+                    <a href="/mental-health" class="footer-link">Mental Health</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2025 PCOS Care Platform. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // DOM Elements
+        const formSection = document.getElementById('form-section');
+        const loadingSection = document.getElementById('loading-section');
+        const recommendationsSection = document.getElementById('recommendations-section');
+        const recommendationsContent = document.getElementById('recommendations-content');
+        const getRecommendationsBtn = document.getElementById('get-recommendations-btn');
+        
+        // Event listener for form submission
+        getRecommendationsBtn.addEventListener('click', function() {
+            // Validate form
+            const form = document.getElementById('recommendations-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Show loading section
+            formSection.style.display = 'none';
+            loadingSection.style.display = 'block';
+            recommendationsSection.style.display = 'none';
+            window.scrollTo(0, 0);
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const jsonData = {};
+            
+            // Convert FormData to JSON
+            for (const [key, value] of formData.entries()) {
+                jsonData[key] = value;
+            }
+            
+            // Send data to backend
+            fetch('/api/get-recommendations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading section
+                loadingSection.style.display = 'none';
+                
+                // Handle error response
+                if (data.error) {
+                    alert(data.error || 'Error processing your request.');
+                    formSection.style.display = 'block';
+                    return;
+                }
+                
+                // Display recommendations
+                displayRecommendations(data.recommendations);
+                
+                // Show recommendations section
+                recommendationsSection.style.display = 'block';
+                window.scrollTo(0, 0);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                loadingSection.style.display = 'none';
+                alert('An error occurred while processing your request. Please try again.');
+                formSection.style.display = 'block';
+            });
+        });
+        
+        // Format and display recommendations
+        function displayRecommendations(recommendations) {
+            // Format the recommendations with Markdown-like formatting to HTML
+            const formattedContent = recommendations
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/# (.*?)(?:<br>|$)/g, '<h2>$1</h2>')
+                .replace(/## (.*?)(?:<br>|$)/g, '<h3>$1</h3>')
+                .replace(/### (.*?)(?:<br>|$)/g, '<h4>$1</h4>')
+                .replace(/- (.*?)(?:<br>|$)/g, '<li>$1</li>')
+                .replace(/<li>(.*?)<\/li>(?:<br>|$)/g, function(match) {
+                    return match.replace(/<br>/g, '');
+                })
+                .replace(/(<li>.*?<\/li>)+/g, '<ul>$&</ul>');
+            
+            recommendationsContent.innerHTML = formattedContent;
+        }
+    </script>
+</body>
+</html>

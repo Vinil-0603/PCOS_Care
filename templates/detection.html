@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCOS Detection - PCOS Care Platform</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8e24aa;
+            --primary-light: #bc53d8;
+            --primary-dark: #5f0080;
+            --primary-bg: #f9f0fc;
+            --secondary: #2196f3;
+            --secondary-light: #64b5f6;
+            --secondary-dark: #0d47a1;
+            --accent: #ff5722;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius-sm: 4px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --header-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-100);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header Styles */
+        .header {
+            height: var(--header-height);
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.25rem 0;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .main-content {
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 3rem;
+            min-height: 100vh;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #f6eefb 0%, #fdf7ff 100%);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 30%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238e24aa' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .page-subtitle {
+            color: var(--gray-700);
+            max-width: 70%;
+            position: relative;
+        }
+        
+        /* Form Styles */
+        .form-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background-color: var(--primary-bg);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .form-title {
+            color: var(--primary-dark);
+            margin-bottom: 0;
+        }
+        
+        .form-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.1);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Results Section */
+        .results-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: none;
+        }
+        
+        .results-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .results-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .results-title {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+        }
+        
+        .results-body {
+            padding: 1.5rem;
+        }
+        
+        .risk-meter {
+            height: 8px;
+            background-color: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .risk-indicator {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        
+        .risk-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+        
+        .alert-info {
+            background-color: rgba(33, 150, 243, 0.1);
+            border-left-color: var(--secondary);
+            color: var(--secondary-dark);
+        }
+        
+        .alert-warning {
+            background-color: rgba(255, 152, 0, 0.1);
+            border-left-color: var(--warning);
+            color: var(--warning);
+        }
+        
+        .alert-danger {
+            background-color: rgba(244, 67, 54, 0.1);
+            border-left-color: var(--danger);
+            color: var(--danger);
+        }
+        
+        .results-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Loading Indicator */
+        .loading-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            padding: 3rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(142, 36, 170, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+        
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+        }
+        
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .chat-container {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chat-container.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-title {
+            margin: 0;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--primary-bg);
+            border-bottom-left-radius: 0;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary-light);
+            color: white;
+            border-bottom-right-radius: 0;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 0.75rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius) 0 0 var(--radius);
+        }
+        
+        .chat-send {
+            padding: 0.75rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: white;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+        }
+        
+        .footer-copyright {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-subtitle {
+                max-width: 100%;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .chat-container {
+                width: 300px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <div class="logo-icon">P</div>
+                    <div class="logo-text">PCOS Care</div>
+                </a>
+                <nav class="nav-links">
+                    <a href="/detection" class="nav-link active">Detection</a>
+                    <a href="/recommendations" class="nav-link">Recommendations</a>
+                    <a href="/mental-health" class="nav-link">Mental Health</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="container">
+            <section class="page-header">
+                <div class="page-header-pattern"></div>
+                <h1 class="page-title">PCOS Risk Assessment</h1>
+                <p class="page-subtitle">Complete the form to evaluate your risk of Polycystic Ovary Syndrome using our advanced machine learning model.</p>
+            </section>
+            
+            <section class="form-section" id="form-section">
+                <div class="form-header">
+                    <h2 class="form-title">PCOS Risk Assessment Form</h2>
+                </div>
+                <div class="form-body">
+                    <form id="pcos-assessment-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="age" class="form-label">Age (years)</label>
+                                <input type="number" id="age" name="Age (yrs)" class="form-control" min="12" max="60" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bmi" class="form-label">BMI</label>
+                                <input type="number" id="bmi" name="BMI" class="form-control" min="15" max="50" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cycle" class="form-label">Menstrual Cycle</label>
+                                <select id="cycle" name="Cycle(R/I)" class="form-control" required>
+                                    <option value="" selected disabled>Select</option>
+                                    <option value="R">Regular</option>
+                                    <option value="I">Irregular</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <h3>PCOS Symptoms & Lifestyle</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Weight Gain</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="weight-gain-yes" name="Weight gain(Y/N)" value="Yes" required>
+                                        <label for="weight-gain-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="weight-gain-no" name="Weight gain(Y/N)" value="No">
+                                        <label for="weight-gain-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Hair Growth (Hirsutism)</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-growth-yes" name="hair growth(Y/N)" value="Yes" required>
+                                        <label for="hair-growth-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-growth-no" name="hair growth(Y/N)" value="No">
+                                        <label for="hair-growth-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Skin Darkening</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="skin-darkening-yes" name="Skin darkening (Y/N)" value="Yes" required>
+                                        <label for="skin-darkening-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="skin-darkening-no" name="Skin darkening (Y/N)" value="No">
+                                        <label for="skin-darkening-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Hair Loss</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-loss-yes" name="Hair loss(Y/N)" value="Yes" required>
+                                        <label for="hair-loss-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hair-loss-no" name="Hair loss(Y/N)" value="No">
+                                        <label for="hair-loss-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Pimples/Acne</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="pimples-yes" name="Pimples(Y/N)" value="Yes" required>
+                                        <label for="pimples-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="pimples-no" name="Pimples(Y/N)" value="No">
+                                        <label for="pimples-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Fast Food Consumption</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="fast-food-yes" name="Fast food (Y/N)" value="Yes" required>
+                                        <label for="fast-food-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="fast-food-no" name="Fast food (Y/N)" value="No">
+                                        <label for="fast-food-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cycle-length" class="form-label">Cycle Length (days)</label>
+                                <input type="number" id="cycle-length" name="Cycle Length (days)" class="form-control" min="15" max="60" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hemoglobin" class="form-label">Hemoglobin (g/dl)</label>
+                                <input type="number" id="hemoglobin" name="Hemoglobin (g/dl)" class="form-control" min="7" max="18" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="waist-hip-ratio" class="form-label">Waist:Hip Ratio</label>
+                                <input type="number" id="waist-hip-ratio" name="Waist:Hip Ratio" class="form-control" min="0.6" max="1.4" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="amh" class="form-label">AMH (ng/mL)</label>
+                                <input type="number" id="amh" name="AMH(ng/mL)" class="form-control" min="0" max="20" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Are you pregnant?</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="pregnant-yes" name="Pregnant(Y/N)" value="Yes" required>
+                                        <label for="pregnant-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="pregnant-no" name="Pregnant(Y/N)" value="No">
+                                        <label for="pregnant-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="abortions" class="form-label">Number of Abortions</label>
+                                <input type="number" id="abortions" name="No. of abortions" class="form-control" min="0" max="10" step="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Regular Exercise</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="exercise-yes" name="Reg.Exercise(Y/N)" value="Yes" required>
+                                        <label for="exercise-yes">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="exercise-no" name="Reg.Exercise(Y/N)" value="No">
+                                        <label for="exercise-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New Section: Additional Diagnostic Parameters -->
+                        <h3>Additional Diagnostic Parameters</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="follicle-left" class="form-label">Follicle No. (L)</label>
+                                <input type="number" id="follicle-left" name="Follicle No. (L)" class="form-control" min="0" step="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="follicle-right" class="form-label">Follicle No. (R)</label>
+                                <input type="number" id="follicle-right" name="Follicle No. (R)" class="form-control" min="0" step="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prl" class="form-label">PRL (ng/mL)</label>
+                                <input type="number" id="prl" name="PRL(ng/mL)" class="form-control" min="0" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fsh" class="form-label">FSH (mIU/mL)</label>
+                                <input type="number" id="fsh" name="FSH(mIU/mL)" class="form-control" min="0" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lh" class="form-label">LH (mIU/mL)</label>
+                                <input type="number" id="lh" name="LH(mIU/mL)" class="form-control" min="0" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fsh-lh-ratio" class="form-label">FSH/LH Ratio</label>
+                                <input type="number" id="fsh-lh-ratio" name="FSH/LH Ratio" class="form-control" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="submit-assessment" class="btn btn-primary">Evaluate PCOS Risk</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            
+            <section class="loading-section" id="loading-section">
+                <div class="spinner"></div>
+                <p class="loading-text">Analyzing your information...</p>
+            </section>
+            
+            <section class="results-section" id="results-section">
+                <div class="results-header">
+                    <div class="results-icon" id="results-icon"></div>
+                    <h2 class="results-title" id="results-title">PCOS Risk Assessment Results</h2>
+                </div>
+                <div class="results-body">
+                    <p id="results-description"></p>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-indicator" id="risk-indicator"></div>
+                    </div>
+                    <div class="risk-labels">
+                        <span>Low Risk</span>
+                        <span>Medium Risk</span>
+                        <span>High Risk</span>
+                    </div>
+                    
+                    <div class="alert alert-info" id="assessment-disclaimer">
+                        This assessment provides an estimated risk based on your information. It is not a medical diagnosis. If you have concerns about PCOS or any health issues, please consult with a healthcare provider.
+                    </div>
+                    
+                    <div id="recommendations-container"></div>
+                    
+                    <div class="results-actions">
+                        <button type="button" id="chat-with-support" class="btn btn-primary">Chat with Mental Health Support</button>
+                        <button type="button" id="restart-assessment" class="btn btn-outline">Start New Assessment</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle" id="chat-toggle">💬</button>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <h3 class="chat-title">PCOS Mental Health Support</h3>
+                <button class="chat-close" id="chat-close">×</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    Hello! I'm here to provide mental health support specifically for people with PCOS. How are you feeling today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Type your message...">
+                <button class="chat-send" id="chat-send">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/" class="footer-link">Home</a>
+                    <a href="/detection" class="footer-link">Detection</a>
+                    <a href="/recommendations" class="footer-link">Recommendations</a>
+                    <a href="/mental-health" class="footer-link">Mental Health</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2025 PCOS Care Platform. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // DOM Elements
+        const formSection = document.getElementById('form-section');
+        const loadingSection = document.getElementById('loading-section');
+        const resultsSection = document.getElementById('results-section');
+        const resultsIcon = document.getElementById('results-icon');
+        const resultsTitle = document.getElementById('results-title');
+        const resultsDescription = document.getElementById('results-description');
+        const riskIndicator = document.getElementById('risk-indicator');
+        const recommendationsContainer = document.getElementById('recommendations-container');
+        const submitAssessmentBtn = document.getElementById('submit-assessment');
+        const restartAssessmentBtn = document.getElementById('restart-assessment');
+        const chatWithSupportBtn = document.getElementById('chat-with-support');
+        
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatContainer = document.getElementById('chat-container');
+        const chatClose = document.getElementById('chat-close');
+        const chatInputField = document.getElementById('chat-input-field');
+        const chatSendBtn = document.getElementById('chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+        
+        // Submit assessment
+        submitAssessmentBtn.addEventListener('click', function() {
+            // Validate form
+            const form = document.getElementById('pcos-assessment-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Show loading section
+            formSection.style.display = 'none';
+            loadingSection.style.display = 'block';
+            resultsSection.style.display = 'none';
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const jsonData = {};
+            
+            // Convert FormData to JSON
+            for (const [key, value] of formData.entries()) {
+                jsonData[key] = value;
+            }
+            
+            // Send data to backend
+            fetch('/api/detect-pcos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading section
+                loadingSection.style.display = 'none';
+                
+                // Handle error response
+                if (data.error) {
+                    alert(data.message || 'Error processing your request.');
+                    formSection.style.display = 'block';
+                    return;
+                }
+                
+                // Display results
+                displayResults(data);
+                
+                // Show results section
+                resultsSection.style.display = 'block';
+                
+                // If PCOS detected, open chat widget automatically after 2 seconds
+                if (data.has_pcos) {
+                    setTimeout(function() {
+                        chatContainer.classList.add('active');
+                    }, 2000);
+                }
+                
+                // Scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                loadingSection.style.display = 'none';
+                formSection.style.display = 'block';
+                alert('An error occurred while processing your request. Please try again.');
+            });
+        });
+        
+        // Display assessment results
+        function displayResults(results) {
+            // Set risk level
+            const probability = results.probability * 100;
+            
+            if (results.has_pcos) {
+                resultsIcon.textContent = '⚠️';
+                resultsIcon.style.backgroundColor = '#f44336';
+                resultsTitle.textContent = 'High PCOS Risk Detected';
+                
+                if (probability > 85) {
+                    resultsDescription.innerHTML = `Based on your information, our model indicates a <strong>very high risk (${probability.toFixed(1)}%)</strong> of PCOS. Multiple strong indicators suggest you may have PCOS. We strongly recommend consulting with a healthcare provider for proper diagnosis and treatment.`;
+                } else {
+                    resultsDescription.innerHTML = `Based on your information, our model indicates a <strong>high risk (${probability.toFixed(1)}%)</strong> of PCOS. Several PCOS indicators were detected. We recommend consulting with a healthcare provider for proper evaluation.`;
+                }
+            } else {
+                resultsIcon.textContent = '✓';
+                resultsIcon.style.backgroundColor = '#4caf50';
+                resultsTitle.textContent = 'Low PCOS Risk Detected';
+                resultsDescription.innerHTML = `Based on your information, our model indicates a <strong>low risk (${probability.toFixed(1)}%)</strong> of PCOS. However, if you have symptoms that concern you, please consult with a healthcare provider.`;
+            }
+            
+            // Set risk indicator
+            riskIndicator.style.width = `${probability}%`;
+            
+            if (probability < 30) {
+                riskIndicator.style.backgroundColor = '#4caf50'; // Green
+            } else if (probability < 70) {
+                riskIndicator.style.backgroundColor = '#ff9800'; // Orange
+            } else {
+                riskIndicator.style.backgroundColor = '#f44336'; // Red
+            }
+            
+            // Show recommendations if provided
+            if (results.recommendations) {
+                const recommendationsHTML = `
+                    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: #8e24aa;">Personalized Recommendations</h3>
+                    <div class="alert alert-info">
+                        Based on your assessment results, we've generated personalized recommendations to help manage your PCOS symptoms.
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        ${formatRecommendations(results.recommendations)}
+                    </div>
+                `;
+                
+                recommendationsContainer.innerHTML = recommendationsHTML;
+            }
+        }
+        
+        // Format recommendations text
+        function formatRecommendations(recommendations) {
+            // Format the recommendations with Markdown-like formatting to HTML
+            return recommendations
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/# (.*?)(?:<br>|$)/g, '<h3 style="color: #8e24aa; margin-top: 1.25rem; margin-bottom: 0.75rem;">$1</h3>')
+                .replace(/## (.*?)(?:<br>|$)/g, '<h4 style="color: #8e24aa; margin-top: 1rem; margin-bottom: 0.5rem;">$1</h4>')
+                .replace(/- (.*?)(?:<br>|$)/g, '<li>$1</li>')
+                .replace(/<li>(.*?)<\/li>(?:<br>|$)/g, function(match) {
+                    return match.replace(/<br>/g, '');
+                })
+                .replace(/(<li>.*?<\/li>)+/g, '<ul style="margin-bottom: 1rem; margin-left: 1.5rem;">$&</ul>');
+        }
+        
+        // Restart assessment
+        restartAssessmentBtn.addEventListener('click', function() {
+            document.getElementById('pcos-assessment-form').reset();
+            resultsSection.style.display = 'none';
+            formSection.style.display = 'block';
+            
+            // Scroll to form
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Chat with support
+        chatWithSupportBtn.addEventListener('click', function() {
+            chatContainer.classList.add('active');
+        });
+        
+        // Chat widget toggle
+        chatToggle.addEventListener('click', function() {
+            chatContainer.classList.add('active');
+        });
+        
+        // Close chat
+        chatClose.addEventListener('click', function() {
+            chatContainer.classList.remove('active');
+        });
+        
+        // Send chat message
+        function sendChatMessage() {
+            const message = chatInputField.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            addChatMessage('user', message);
+            
+            // Clear input
+            chatInputField.value = '';
+            
+            // Show thinking indicator
+            addThinkingIndicator();
+            
+            // Send message to backend
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove thinking indicator
+                removeThinkingIndicator();
+                
+                // Add bot response
+                addChatMessage('bot', data.response);
+                
+                // Scroll chat to bottom
+                scrollChatToBottom();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                removeThinkingIndicator();
+                addChatMessage('bot', "I'm having trouble connecting right now. Please try again in a moment.");
+                scrollChatToBottom();
+            });
+        }
+        
+        // Add chat message
+        function addChatMessage(sender, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.textContent = content;
+            
+            chatMessages.appendChild(messageDiv);
+            scrollChatToBottom();
+        }
+        
+        // Add thinking indicator
+        function addThinkingIndicator() {
+            const indicatorDiv = document.createElement('div');
+            indicatorDiv.classList.add('message', 'bot-message');
+            indicatorDiv.id = 'thinking-indicator';
+            indicatorDiv.innerHTML = 'Thinking...';
+            
+            chatMessages.appendChild(indicatorDiv);
+            scrollChatToBottom();
+        }
+        
+        // Remove thinking indicator
+        function removeThinkingIndicator() {
+            const indicator = document.getElementById('thinking-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+        
+        // Scroll chat to bottom
+        function scrollChatToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Send chat message with button
+        chatSendBtn.addEventListener('click', sendChatMessage);
+        
+        // Send chat message with Enter key
+        chatInputField.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendChatMessage();
+            }
+        });
+    </script>
+</body>
+</html>

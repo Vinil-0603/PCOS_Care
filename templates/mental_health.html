@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Support - PCOS Care Platform</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8e24aa;
+            --primary-light: #bc53d8;
+            --primary-dark: #5f0080;
+            --primary-bg: #f9f0fc;
+            --secondary: #2196f3;
+            --secondary-light: #64b5f6;
+            --secondary-dark: #0d47a1;
+            --secondary-bg: #e3f2fd;
+            --accent: #ff5722;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius-sm: 4px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --header-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-100);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header Styles */
+        .header {
+            height: var(--header-height);
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.25rem 0;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .main-content {
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 30%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232196f3' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: var(--secondary-dark);
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .page-subtitle {
+            color: var(--gray-700);
+            max-width: 70%;
+            position: relative;
+        }
+        
+        /* Chat Section */
+        .chat-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background-color: var(--secondary-bg);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .chat-title {
+            margin-bottom: 0;
+        }
+        
+        .chat-subtitle {
+            color: var(--gray-600);
+            margin-bottom: 0;
+            font-size: 0.875rem;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            min-height: 400px;
+            max-height: 600px;
+        }
+        
+        .message {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .bot-avatar {
+            background-color: var(--secondary);
+        }
+        
+        .user-avatar {
+            background-color: var(--gray-700);
+        }
+        
+        .message-content {
+            padding: 0.875rem 1rem;
+            border-radius: var(--radius);
+            max-width: 80%;
+        }
+        
+        .bot-message .message-content {
+            background-color: var(--secondary-light);
+            color: var(--gray-900);
+            border-bottom-left-radius: 0;
+        }
+        
+        .user-message {
+            justify-content: flex-end;
+        }
+        
+        .user-message .message-content {
+            background-color: var(--gray-200);
+            color: var(--gray-800);
+            border-bottom-right-radius: 0;
+        }
+        
+        .chat-input {
+            padding: 1.25rem;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .input-field {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: var(--transition);
+            resize: none;
+            min-height: 54px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .send-btn {
+            background-color: var(--secondary);
+            color: white;
+            border-radius: var(--radius);
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .send-btn:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .send-btn:disabled {
+            background-color: var(--gray-400);
+            cursor: not-allowed;
+        }
+        
+        .send-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Thinking Indicator */
+        .thinking-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            background-color: var(--secondary-light);
+            align-self: flex-start;
+            color: var(--gray-900);
+            font-size: 0.875rem;
+            margin-left: 48px;
+        }
+        
+        .thinking-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--secondary-dark);
+            animation: thinking 1.4s infinite ease-in-out both;
+        }
+        
+        .thinking-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .thinking-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes thinking {
+            0%, 80%, 100% { 
+                transform: scale(0);
+            } 
+            40% { 
+                transform: scale(1.0);
+            }
+        }
+        
+        /* Info Section */
+        .info-section {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-title {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--secondary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-dark);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: white;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+        }
+        
+        .footer-copyright {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-subtitle {
+                max-width: 100%;
+            }
+            
+            .message-content {
+                max-width: 90%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <div class="logo-icon">P</div>
+                    <div class="logo-text">PCOS Care</div>
+                </a>
+                <nav class="nav-links">
+                    <a href="/detection" class="nav-link">Detection</a>
+                    <a href="/recommendations" class="nav-link">Recommendations</a>
+                    <a href="/mental-health" class="nav-link active">Mental Health</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="container">
+            <section class="page-header">
+                <div class="page-header-pattern"></div>
+                <h1 class="page-title">PCOS Mental Health Support</h1>
+                <p class="page-subtitle">Chat with our specialized mental health support bot designed to address the unique emotional challenges of living with PCOS.</p>
+            </section>
+            
+            <section class="chat-section">
+                <div class="chat-header">
+                    <div class="chat-avatar">🤍</div>
+                    <div>
+                        <h2 class="chat-title">PCOS Support Bot</h2>
+                        <p class="chat-subtitle">Here to support your mental wellbeing with PCOS</p>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">
+                        <div class="message-avatar bot-avatar">🤍</div>
+                        <div class="message-content">
+                            Hello! I'm here to provide mental health support specifically for people with PCOS. Feel free to share how you're feeling or ask any questions about managing the emotional aspects of PCOS. How can I support you today?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <textarea id="user-input" class="input-field" placeholder="Type your message here..." rows="1"></textarea>
+                    <button id="send-button" class="send-btn">
+                        <svg class="send-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+            
+            <section class="info-section">
+                <h3 class="info-title">
+                    <div class="info-icon">ℹ️</div>
+                    About PCOS and Mental Health
+                </h3>
+                <p>Living with PCOS can be emotionally challenging. Many people with PCOS experience:</p>
+                <ul>
+                    <li>Anxiety and depression related to managing a chronic condition</li>
+                    <li>Body image concerns due to weight changes, hair growth, or skin issues</li>
+                    <li>Stress about fertility and reproductive health</li>
+                    <li>Frustration with symptoms and treatment efficacy</li>
+                </ul>
+                <p>Our support bot is designed to provide emotional support, coping strategies, and resources specific to these challenges. While this tool can be helpful, it's not a replacement for professional mental health care. If you're experiencing severe symptoms, please consider speaking with a mental health professional.</p>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/" class="footer-link">Home</a>
+                    <a href="/detection" class="footer-link">Detection</a>
+                    <a href="/recommendations" class="footer-link">Recommendations</a>
+                    <a href="/mental-health" class="footer-link">Mental Health</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2025 PCOS Care Platform. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // DOM Elements
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        
+        // Auto-resize textarea as user types
+        userInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+        });
+        
+        // Send message function
+        function sendMessage() {
+            const message = userInput.value.trim();
+            
+            if (!message) return;
+            
+            // Disable send button while processing
+            sendButton.disabled = true;
+            
+            // Add user message to chat
+            addUserMessage(message);
+            
+            // Clear input field and reset height
+            userInput.value = '';
+            userInput.style.height = 'auto';
+            
+            // Show thinking indicator
+            showThinkingIndicator();
+            
+            // Send message to API
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide thinking indicator
+                hideThinkingIndicator();
+                
+                // Add bot response to chat
+                addBotMessage(data.response);
+                
+                // Re-enable send button
+                sendButton.disabled = false;
+                
+                // Focus input field
+                userInput.focus();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                
+                // Hide thinking indicator
+                hideThinkingIndicator();
+                
+                // Show error message
+                addBotMessage('I apologize, but I seem to be having trouble connecting. Please try again in a moment.');
+                
+                // Re-enable send button
+                sendButton.disabled = false;
+            });
+        }
+        
+        // Add user message to chat
+        function addUserMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message user-message';
+            
+            messageElement.innerHTML = `
+                <div class="message-avatar user-avatar">👤</div>
+                <div class="message-content">${message}</div>
+            `;
+            
+            chatMessages.appendChild(messageElement);
+            scrollToBottom();
+        }
+        
+        // Add bot message to chat
+        function addBotMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message bot-message';
+            
+            messageElement.innerHTML = `
+                <div class="message-avatar bot-avatar">🤍</div>
+                <div class="message-content">${message}</div>
+            `;
+            
+            chatMessages.appendChild(messageElement);
+            scrollToBottom();
+        }
+        
+        // Show thinking indicator
+        function showThinkingIndicator() {
+            const indicatorElement = document.createElement('div');
+            indicatorElement.className = 'thinking-indicator';
+            indicatorElement.id = 'thinking-indicator';
+            
+            indicatorElement.innerHTML = `
+                <div class="thinking-dot"></div>
+                <div class="thinking-dot"></div>
+                <div class="thinking-dot"></div>
+            `;
+            
+            chatMessages.appendChild(indicatorElement);
+            scrollToBottom();
+        }
+        
+        // Hide thinking indicator
+        function hideThinkingIndicator() {
+            const indicator = document.getElementById('thinking-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+        
+        // Scroll chat to bottom
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        
+        userInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Focus input field on page load
+        window.addEventListener('load', function() {
+            userInput.focus();
+        });
+    </script>
+</body>
+</html>
