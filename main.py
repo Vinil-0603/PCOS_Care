@@ -15,14 +15,14 @@ app = Flask(__name__)
 app.secret_key = "pcos_integrated_support_secret_key"  # For session management
 
 # Configure API keys
-GEMINI_API_KEY = "AIzaSyCUYuDX1ACvaJ4liwDQUNcu9UqA9Yi7UIM"
-RECOMMENDATION_API_KEY = "AIzaSyBL7LfbY1v3MAYMb2ybYCS_JQ0mdi6rETg"
+GEMINI_API_KEY = "Your_gemini_API"
+RECOMMENDATION_API_KEY = "Your_gemini_API"
 
 # Configure Gemini API for chatbot and recommendations
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Mental health chatbot model
-MENTAL_HEALTH_MODEL = "tunedModels/pcosmentalhealth-fndi214ha4hl"
+MENTAL_HEALTH_MODEL = "tunedModels/path"
 
 # Define a ScalerAdapter to handle numpy array scalers
 class ScalerAdapter:
